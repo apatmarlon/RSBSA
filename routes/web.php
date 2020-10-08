@@ -16,13 +16,8 @@ Route :: get ('/logout','Admincontroller@logout');
 Route :: get ('/student_logout','StudentController@studentlogout');
 
 
-Route::get('/', function () {
-    return view('admin.admin_login');
-});
-Route::get('/backend', function () {
-    return view('admin.admin_login');
-});
-
+Route::get('/','AdminController@login');
+Route::get('/backend','AdminController@login');
 
 //Admin Log In........
 
@@ -91,4 +86,3 @@ Route :: post ('/save_farmland','FarmlandController@save_farmland');
 // Farmparcel .................
 Route :: get ('/addfarmparcel','FarmparcelController@farmparcel');
 Route :: post ('/save_farmparcel','FarmparcelController@save_farmparcel');
-

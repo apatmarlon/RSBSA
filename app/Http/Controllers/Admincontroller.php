@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\Redirect;
 //use Session;
 //session_start();
 
-
-
-
-
 class Admincontroller extends Controller
 {
     // Admin part
@@ -68,6 +64,8 @@ public function logout(){
 
     }
 
-
+    public function login(){
+        return view('admin.admin_login');
+    }
 
 }
