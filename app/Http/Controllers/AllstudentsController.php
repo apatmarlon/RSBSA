@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use App\Farmland;
+use App\Farmparcels;
 use Session;
 
 Session_start();
@@ -24,9 +26,18 @@ class AllstudentsController extends Controller
     // Delete Student
 
     public function studentdelete($request_id){
+        $uid = $request_id;
+        $farmlands = Farmland::where('student_id',$uid)->get();
+        if($farmlands){
+            foreach($farmlands as $farmland){
+                Farmparcels::where('farmland_id',$farmland->id)->delete();
+            }
+        }
+        Farmland::where('student_id',$uid)->delete();
         DB::table('student_tbl')
-            ->where('student_id',$request_id)
+            ->where('student_id',$uid)
             ->delete();
+
         return Redirect::to('/allstudent');
     }
 
